@@ -5,6 +5,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="MyStudyBuddy.js"></script>
         <link rel="stylesheet" href="MyStudyBuddy.css">
+        <!--Google Maps API Integration-->
+        <script>
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('MainView'),{
+                    center: {lat: 39.955476,lng:-75.189411},
+                    zoom: 15
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0&callback=initMap"
+        async defer></script>
     </head>
     <body>
         <div id="MainNav"></div>
@@ -15,6 +27,7 @@
             <button id="projects_btn" onclick="view_projects();">Projects</button>
             <button id="chats_btn" onclick="view_chats();">My Chats</button>
         </div>
-        <div id="MainView"></div>
+        <div id="MainView">
+        </div>
     </body>
 </html>

@@ -14,6 +14,7 @@ body {
     height: 100%;
     float: left;
     background: red;
+    position: fixed;
 }
 #MainView {
     top: 100px;
@@ -21,4 +22,5 @@ body {
     height: 100%;
     background: green;
     margin-left: 15%;
+    position: fixed;
 }
