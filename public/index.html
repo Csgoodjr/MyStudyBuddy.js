@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Firebase Init -->
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/6.4.2/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -14,10 +15,14 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-    <!--Local Files-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="myStudyBuddy.js"></script>
+    <!-- APIs -->
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Hepta+Slab&display=swap" rel="stylesheet"> 
+
+    <!-- Local Files -->
+    <script src="myStudyBuddy.js"></script>
     <link rel="stylesheet" href="myStudyBuddy.css">
 
     <!--Google Maps API Integration-->
@@ -28,11 +33,10 @@
               center: {lat: 39.955476,lng:-75.189411},
               zoom: 15
           });
-      }
+      }   
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0&callback=initMap"
     async defer></script>
-
   </head>
   <body>
     <div id="MainNav"></div>
