@@ -13,14 +13,14 @@ var db = firebase.firestore();
 var app = express();
 app.use(express.static(__dirname));
 
-app.get('/test',function(req,res) {
+app.get('/add',function(req,res) {
     db.collection("users").add({
-		email: 'axzamora@gmail.com',
-		firstName: 'Adam',
-		id: '14241502',
-		lastName: 'Zamora',
-		password: 'test2',
-		username: 'axzamora98'
+		email: req.query.email,
+		firstName: req.query.firstName,
+		id: req.query.id,
+		lastName: req.query.lastName,
+		password: req.query.password,
+		username: req.query.username
 	})
 	.then(function(docRef) {
 		console.log("Document written with ID: ", docRef.id);
