@@ -4,7 +4,10 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="MyStudyBuddy.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Hepta+Slab&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="MyStudyBuddy.css">
+        <script src="/__/firebase/6.4.2/firebase-app.js"></script>
+        <script src="/__/firebase/init.js"></script>
         <!--Google Maps API Integration-->
         <script>
             var map;
@@ -21,11 +24,11 @@
     <body>
         <div id="MainNav"></div>
         <div id="MainSideBar">
-            <button id="map_btn" onclick="view_map();">Map</button>
-            <button id="classes_btn" onclick="view_classes();">Classes</button>
-            <button id="homework_btn" onclick="view_homework();">Homework</button>
-            <button id="projects_btn" onclick="view_projects();">Projects</button>
-            <button id="chats_btn" onclick="view_chats();">My Chats</button>
+            <button class="sidebarbtn" id="map_btn" onclick="view_map();">Map</button>
+            <button class="sidebarbtn" id="classes_btn" onclick="view_classes();">Classes</button>
+            <button class="sidebarbtn" id="homework_btn" onclick="view_homework();">Homework</button>
+            <button class="sidebarbtn" id="projects_btn" onclick="view_projects();">Projects</button>
+            <button class="sidebarbtn" id="chats_btn" onclick="view_chats();">My Chats</button>
         </div>
         <div id="MainView">
         </div>
