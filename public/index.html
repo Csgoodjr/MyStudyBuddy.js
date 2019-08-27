@@ -39,7 +39,10 @@
     async defer></script>
   </head>
   <body>
-    <div id="MainNav"></div>
+    <div id="MainNav">
+      <button class="user_btn" id="add_user_btn" onclick="addUser();">Add User</button>
+      <button class="current_user_btn" id="view_user_btn" onclick="viewUser();">Current User</button>
+    </div>
     <div id="MainSideBar">
         <button class="sidebarbtn" id="map_btn" onclick="view_map();">Map</button>
         <button class="sidebarbtn" id="classes_btn" onclick="view_classes();">Classes</button>

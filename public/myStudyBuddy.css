@@ -1,5 +1,13 @@
+:root {
+    --standard-font-family: 'Hepta Slab', serif; 
+    --teal: #07889B;
+    --powder: #66B9BF;
+    --tang: #E37222;
+}
+
 body {
     margin: 0;
+    font-family: var(--standard-font-family);
 }
 
 .sidebarbtn {
@@ -7,17 +15,18 @@ body {
     height: 30px;
     border: none;
     font-size: 20px;
+    background: var(--tang);
 }
 
 .sidebarbtn:hover {
-    background: gray;
+    background: var(--teal);
     cursor: pointer;
 }
 
 #MainNav {
     width: 100%;
     height: 100px;
-    background: blue;
+    background: var(--teal);
     position: fixed;
 }
 #MainSideBar {
@@ -25,7 +34,7 @@ body {
     width: 15%;
     height: 100%;
     float: left;
-    background: red;
+    background: var(--tang);
     position: fixed;
 }
 #MainView {
