@@ -19,7 +19,7 @@ body {
 }
 
 .sidebarbtn:hover {
-    background: var(--teal);
+    background: var(--powder);
     cursor: pointer;
 }
 

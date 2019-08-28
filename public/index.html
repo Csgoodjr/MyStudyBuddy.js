@@ -26,22 +26,17 @@
     <link rel="stylesheet" href="myStudyBuddy.css">
 
     <!--Google Maps API Integration-->
-    <script>
-      var map;
-      function initMap() {
-          map = new google.maps.Map(document.getElementById('MainView'),{
-              center: {lat: 39.955476,lng:-75.189411},
-              zoom: 15
-          });
-      }   
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSN7fcLyjrMWAGeXhwJwiWSqILWVfCG_4&libraries=visualization&callback=initMap"
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88"
     async defer></script>
+
+   
+
   </head>
   <body>
     <div id="MainNav">
-      <button class="user_btn" id="add_user_btn" onclick="add_user();">Add User</button>
-      <button class="current_user_btn" id="view_user_btn" onclick="view_user();">Current User</button>
+      <button class="mainnavbtn" id="add_user_btn" onclick="add_user();">Add User</button>
+      <button class="mainnavbtn" id="view_user_btn" onclick="view_user();">Current User</button>
     </div>
     <div id="MainSideBar">
         <button class="sidebarbtn" id="map_btn" onclick="view_map();">Map</button>
@@ -51,6 +46,11 @@
         <button class="sidebarbtn" id="chats_btn" onclick="view_chats();">My Chats</button>
     </div>
     <div id="MainView">
+      <div id="Map">
+      </div>
+    </div>
+    <div id="user_modal">
+
     </div>
   </body>
 </html>
