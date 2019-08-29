@@ -127,4 +127,3 @@ function get_user() {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
 		}
 	});
->>>>>>> 73821ee589be7e77e37bbba7eb332f4fa562205f
