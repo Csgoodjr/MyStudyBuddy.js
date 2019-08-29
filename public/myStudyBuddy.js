@@ -23,6 +23,7 @@ function view_chats() {
 function add_user() {
 	conscole.log("New User...");
 	
+	//check if email or username taken?
 	var email = document.getElementById("email").value;
 	var firstName = document.getElementById("firstName").value;
 	var id = document.getElementById("id").value;
@@ -30,7 +31,7 @@ function add_user() {
 	var password = document.getElementById("password").value;
 	var username = document.getElementById("username").value;
 	
-	var URL = "http://localhost:8080/add?" + "email=" + email + "&firstName=" + firstName +
+	var URL = "http://localhost:8080/addUser?" + "email=" + email + "&firstName=" + firstName +
 		"&id=" + id + "&lastName=" + lastName + "&password=" + password + "&username=" + username;
 	
 	$.ajax({
@@ -47,3 +48,23 @@ function add_user() {
 		}
 	});
 }
+
+function get_user() {
+	console.log("Get User...");
+	
+	//must keep track of username, firstName, lastName, id
+	var URL = "http://localhost:8080/getUser?" + "id=" + id;
+	
+	$.ajax({
+		type: "GET",
+		url: URL,
+		contentType: "application/json; charset=utf-8",
+		data: "{}",
+		dataType: "jsonp",
+		success: function(msg) {
+			//$("#content").html(msg);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			//$("#content").html("<p>Error fetching " + URL + "</p>");
+		}
+	});

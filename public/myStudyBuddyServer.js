@@ -13,7 +13,7 @@ var db = firebase.firestore();
 var app = express();
 app.use(express.static(__dirname));
 
-app.get('/add',function(req,res) {
+app.get('/addUser', function(req,res) {
     db.collection("users").add({
 		email: req.query.email,
 		firstName: req.query.firstName,
@@ -27,6 +27,19 @@ app.get('/add',function(req,res) {
 	})
 	.catch(function(error) {
 		console.error("Error adding document: ", error);
+	});
+});
+
+app.get('/getUser', function(req,res) {
+	db.collection("users").get().then((querySnapshot) => {
+		querySnapshot.forEach((doc) => {
+			console.log(doc.data().username + ' => ' + doc.data().id);
+			
+			if(req.query.id == doc.data().id)
+			{
+				res.send(doc.data());
+			}
+		});
 	});
 });
 
