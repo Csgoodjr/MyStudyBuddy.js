@@ -38,6 +38,7 @@ function view_chats() {
     $("#MainView").html("<h1>Chats</h1>");
 }
 
+//Modals
 function open_modal() {
     $("#user_modal").css({"display":"block"});
     console.log("Add User Clicked");
@@ -47,12 +48,21 @@ function close_modal() {
     $("#user_modal").css({"display":"none"});
 }
 
+function view_user() {
+    $("#current_user_modal").css({"display":"block"});
+    console.log("Log In User Clicked");
+}
+
+function close_current_modal() {
+    $("#current_user_modal").css({"display":"none"});
+}
+
 function add_user() {
 	console.log("New User...");
 	
 	var email = document.getElementById("email").value;
 	var firstName = document.getElementById("firstName").value;
-	var id = (Math.floor(Math.random()*10000));
+	var id = document.getElementById("id").value;
 	var lastName = document.getElementById("lastName").value;
 	var password = document.getElementById("password").value;
 	var username = document.getElementById("username").value;
@@ -73,4 +83,26 @@ function add_user() {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
 		}
 	});
+}
+
+function log_in() {
+    console.log("Log In...");
+
+    var username = $("#username").val();
+    var password =$("#password").val();
+
+    var URL = "http://localhost:8080/login?username="+username+"&password="+password;
+    $.ajax({
+        type: "GET",
+        url: URL,
+        contentType: "application/json; charset=utf-8",
+        data: "{}",
+        dataType: "html",
+        success: function(msg) {
+            console.log("Logged In!");
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log("Error Logging In");
+        }
+    });
 }
