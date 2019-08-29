@@ -86,7 +86,6 @@ function add_user() {
 	});
 }
 
-<<<<<<< HEAD
 function log_in() {
     console.log("Log In...");
 
@@ -99,7 +98,7 @@ function log_in() {
         url: URL,
         contentType: "application/json; charset=utf-8",
         data: "{}",
-        dataType: "html",
+        dataType: "jsonp",
         success: function(msg) {
             console.log("Logged In!");
         },
@@ -108,7 +107,7 @@ function log_in() {
         }
     });
 }
-=======
+
 function get_user() {
 	console.log("Get User...");
 	

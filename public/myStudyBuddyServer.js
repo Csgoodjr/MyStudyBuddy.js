@@ -43,6 +43,19 @@ app.get('/getUser', function(req,res) {
 	});
 });
 
+app.get('/login', function(req,res) {
+	db.collection("users").get().then((querySnapshot) => {
+		querySnapshot.forEach((doc) => {
+			if(req.query.username == doc.data().username && req.query.password == doc.data().password)
+			{
+				res.send(doc.data());
+			}
+		});
+		
+		res.status(400).end();
+	});
+});
+
 app.listen(8080, function() {
 	console.log('Server Started...');
 });
