@@ -52,9 +52,17 @@
       <input id="firstName" placeholder="First Name..."><br>
       <input id="lastName" placeholder="Last Name..."><br>
       <input id="email" placeholder="Email Address..."><br>
+      <input id="id" placeholder="User ID...">
       <input id="username" placeholder="Username..."><br>
       <input id="password" placeholder="Password..."><br>
       <button onclick="add_user();">Submit</button>
+    </div>
+    <div id="current_user_modal" class="user_modal">
+      <button class="close" onclick="close_current_modal();">&times;</button>
+      <p>Welcome Back! Please Log in</p>
+      <input id="username" placeholder="Username..."><br>
+      <input id="password" placeholder="Password..."><br>
+      <button onclick="log_in();">Log In</button>
     </div>
   </body>
 </html>
