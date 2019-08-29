@@ -26,16 +26,13 @@
     <link rel="stylesheet" href="myStudyBuddy.css">
 
     <!--Google Maps API Integration-->
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0"></script>-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88"
     async defer></script>
-
-   
 
   </head>
   <body>
     <div id="MainNav">
-      <button class="mainnavbtn" id="add_user_btn" onclick="add_user();">Add User</button>
+      <button class="mainnavbtn" id="add_user_modal_btn" onclick="open_modal();">Add User</button>
       <button class="mainnavbtn" id="view_user_btn" onclick="view_user();">Current User</button>
     </div>
     <div id="MainSideBar">
@@ -49,8 +46,15 @@
       <div id="Map">
       </div>
     </div>
-    <div id="user_modal">
-
+    <div id="user_modal" class="user_modal">
+      <button class="close" onclick="close_modal();">&times;</button>
+      <p>Welcome! Please enter your information below:</p><br>
+      <input id="firstName" placeholder="First Name..."><br>
+      <input id="lastName" placeholder="Last Name..."><br>
+      <input id="email" placeholder="Email Address..."><br>
+      <input id="username" placeholder="Username..."><br>
+      <input id="password" placeholder="Password..."><br>
+      <button onclick="add_user();">Submit</button>
     </div>
   </body>
 </html>

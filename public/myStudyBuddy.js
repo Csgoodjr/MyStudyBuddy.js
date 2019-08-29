@@ -35,15 +35,24 @@ function view_chats() {
 	console.log("Chats");
 	$("#MainView").empty();
 	$("#MainView").css({'background':'red'});
-	$("#MainView").html("<h1>Chats</h1>");
+    $("#MainView").html("<h1>Chats</h1>");
+}
+
+function open_modal() {
+    $("#user_modal").css({"display":"block"});
+    console.log("Add User Clicked");
+}
+
+function close_modal() {
+    $("#user_modal").css({"display":"none"});
 }
 
 function add_user() {
-	conscole.log("New User...");
+	console.log("New User...");
 	
 	var email = document.getElementById("email").value;
 	var firstName = document.getElementById("firstName").value;
-	var id = document.getElementById("id").value;
+	var id = (Math.floor(Math.random()*10000));
 	var lastName = document.getElementById("lastName").value;
 	var password = document.getElementById("password").value;
 	var username = document.getElementById("username").value;
