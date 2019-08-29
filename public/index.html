@@ -26,22 +26,14 @@
     <link rel="stylesheet" href="myStudyBuddy.css">
 
     <!--Google Maps API Integration-->
-    <script>
-      var map;
-      function initMap() {
-          map = new google.maps.Map(document.getElementById('MainView'),{
-              center: {lat: 39.955476,lng:-75.189411},
-              zoom: 15
-          });
-      }   
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88"
     async defer></script>
+
   </head>
   <body>
     <div id="MainNav">
-      <button class="user_btn" id="add_user_btn" onclick="addUser();">Add User</button>
-      <button class="current_user_btn" id="view_user_btn" onclick="viewUser();">Current User</button>
+      <button class="mainnavbtn" id="add_user_modal_btn" onclick="open_modal();">Add User</button>
+      <button class="mainnavbtn" id="view_user_btn" onclick="view_user();">Current User</button>
     </div>
     <div id="MainSideBar">
         <button class="sidebarbtn" id="map_btn" onclick="view_map();">Map</button>
@@ -51,6 +43,18 @@
         <button class="sidebarbtn" id="chats_btn" onclick="view_chats();">My Chats</button>
     </div>
     <div id="MainView">
+      <div id="Map">
+      </div>
+    </div>
+    <div id="user_modal" class="user_modal">
+      <button class="close" onclick="close_modal();">&times;</button>
+      <p>Welcome! Please enter your information below:</p><br>
+      <input id="firstName" placeholder="First Name..."><br>
+      <input id="lastName" placeholder="Last Name..."><br>
+      <input id="email" placeholder="Email Address..."><br>
+      <input id="username" placeholder="Username..."><br>
+      <input id="password" placeholder="Password..."><br>
+      <button onclick="add_user();">Submit</button>
     </div>
   </body>
 </html>

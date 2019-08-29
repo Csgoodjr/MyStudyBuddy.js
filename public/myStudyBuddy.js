@@ -1,32 +1,59 @@
+var map;
+
 function view_map() {
-    console.log("Map");
-    //GoogleMapsApiKey=AIzaSyCK2qX2torgp4UGseh4RnkYkxrsHweyRf0
+	console.log("Map");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'red'});
+	map = new google.maps.Map(document.getElementById('MainView'),{
+		center: new google.maps.LatLng(-34.397, 150.644),
+		zoom: 8
+	});
 }
 
 function view_classes() {
-    console.log("Classes");
-    $("#MainView").css({'background':'white'});
+	console.log("Classes");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'red'});
+	$("#MainView").html("<h1>Classes</h1>");
 }
 
 function view_homework() {
-    console.log("Homework");
+	console.log("Homework");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'red'});
+	$("#MainView").html("<h1>Homework</h1>");
 }
 
 function view_projects() {
-    console.log("Projects");
+	console.log("Projects");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'red'});
+	$("#MainView").html("<h1>Projects</h1>");
 }
 
 function view_chats() {
-    console.log("Chats");
+	console.log("Chats");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'red'});
+    $("#MainView").html("<h1>Chats</h1>");
+}
+
+function open_modal() {
+    $("#user_modal").css({"display":"block"});
+    console.log("Add User Clicked");
+}
+
+function close_modal() {
+    $("#user_modal").css({"display":"none"});
 }
 
 function add_user() {
-	conscole.log("New User...");
+	console.log("New User...");
 	
 	//check if email or username taken?
 	var email = document.getElementById("email").value;
 	var firstName = document.getElementById("firstName").value;
-	var id = document.getElementById("id").value;
+	var id = (Math.floor(Math.random()*10000));
 	var lastName = document.getElementById("lastName").value;
 	var password = document.getElementById("password").value;
 	var username = document.getElementById("username").value;
