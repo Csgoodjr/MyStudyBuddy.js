@@ -31,9 +31,19 @@ body {
     background: var(--teal);
     position: fixed;
 }
+
+#main_image {
+    width: 75px;
+    height: 75px;
+    top: 10px;
+    left: 10px;
+    float: left;
+    position: fixed;
+}
+
 #MainSideBar {
     top: 100px;
-    width: 15%;
+    width: 10%;
     height: 100%;
     float: left;
     background: var(--tang);
@@ -41,10 +51,10 @@ body {
 }
 #MainView {
     top: 100px;
-    width: 85%;
+    width: 90%;
     height: 100%;
     background: green;
-    margin-left: 15%;
+    margin-left: 10%;
     position: fixed;
 }
 
@@ -88,3 +98,12 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+#marker {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #088;
+    border-radius: 10px;
+    background-color: #0FF;
+    opacity: 1;
+  }

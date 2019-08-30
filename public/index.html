@@ -25,13 +25,19 @@
     <script src="myStudyBuddy.js"></script>
     <link rel="stylesheet" href="myStudyBuddy.css">
 
-    <!--Google Maps API Integration-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88"
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
+    <!--Google Maps API Integration
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0_vG65_C96ukhY1WlxmIXAo8uZ2bzRm8&callback=view_map"
     async defer></script>
+    -->
+
+    
 
   </head>
   <body>
     <div id="MainNav">
+      <img src="cs275_main_image.png" id="main_image">
       <button class="mainnavbtn" id="add_user_modal_btn" onclick="open_modal();">Add User</button>
       <button class="mainnavbtn" id="view_user_btn" onclick="view_user();">Current User</button>
     </div>
@@ -43,8 +49,7 @@
         <button class="sidebarbtn" id="chats_btn" onclick="view_chats();">My Chats</button>
     </div>
     <div id="MainView">
-      <div id="Map">
-      </div>
+      <div id="marker" title="Marker"></div>
     </div>
     <div id="user_modal" class="user_modal">
       <button class="close" onclick="close_modal();">&times;</button>
@@ -52,7 +57,7 @@
       <input id="firstName" placeholder="First Name..."><br>
       <input id="lastName" placeholder="Last Name..."><br>
       <input id="email" placeholder="Email Address..."><br>
-      <input id="id" placeholder="User ID...">
+      <input id="id" placeholder="User ID..."><br>
       <input id="username" placeholder="Username..."><br>
       <input id="password" placeholder="Password..."><br>
       <button onclick="add_user();">Submit</button>

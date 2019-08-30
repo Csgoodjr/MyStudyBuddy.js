@@ -1,40 +1,76 @@
-var map;
+//Run On Load
+$(function() {
+	let user = get_user();
+	if (user) {
+		$("#view_user_btn").html("Hello, "+user);
+	} else {
+		$("#view_user_btn").html("Welcome! Click here to Log In");
+	}
+});
 
+//MAP VIEW
 function view_map() {
 	console.log("Map");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'red'});
-	map = new google.maps.Map(document.getElementById('MainView'),{
-		center: new google.maps.LatLng(-34.397, 150.644),
-		zoom: 8
+	$("#MainView").css({'background':'white','padding-left':'0px'});
+	//Set Up Map
+	var map = new ol.Map({
+        target: 'MainView',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-75.189255,39.955390]),
+          zoom: 17
+        })
 	});
+	//Make Marker
+	var pos = ol.proj.fromLonLat([-75.189255,39.955390])
+	var marker = new ol.Overlay({
+		position: pos,
+		positioning: 'center-center',
+		element: document.getElementById('marker'),
+		stopEvent: false
+	});
+	map.addOverlay(marker);
+	  
 }
 
+//CLASS VIEW
 function view_classes() {
 	console.log("Classes");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'red'});
-	$("#MainView").html("<h1>Classes</h1>");
+	$("#MainView").css({'background':'white','padding-left':'10px'});
+	$("#MainView").html('<h1>Classes</h1><div id="class_scroll"><div>');
+	var classlist = ['CS 260','MATH 200','MATH 221','STAT 201','COM 230','CS 275'];
+	for (i=0;i<classlist.length;i++) {
+		$("#class_scroll").append(classlist[i]+"<br>");
+	}
 }
 
+//HOMEWORK VIEW
 function view_homework() {
 	console.log("Homework");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'red'});
+	$("#MainView").css({'background':'white','padding-left':'10px'});
 	$("#MainView").html("<h1>Homework</h1>");
 }
 
+//PROJECTS VIEW
 function view_projects() {
 	console.log("Projects");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'red'});
+	$("#MainView").css({'background':'white','padding-left':'10px'});
 	$("#MainView").html("<h1>Projects</h1>");
 }
 
+//CHATS VIEW
 function view_chats() {
 	console.log("Chats");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'red'});
+	$("#MainView").css({'background':'white','padding-left':'10px'});
     $("#MainView").html("<h1>Chats</h1>");
 }
 
@@ -57,6 +93,7 @@ function close_current_modal() {
     $("#current_user_modal").css({"display":"none"});
 }
 
+//ADD USER
 function add_user() {
 	console.log("New User...");
 	
@@ -86,6 +123,7 @@ function add_user() {
 	});
 }
 
+//LOG USER IN
 function log_in() {
     console.log("Log In...");
 
@@ -108,12 +146,12 @@ function log_in() {
     });
 }
 
+//GET THE CURRENT USER
 function get_user() {
 	console.log("Get User...");
-	
+	var USER;
 	//must keep track of username, firstName, lastName, id
 	var URL = "http://localhost:8080/getUser?" + "id=" + id;
-	
 	$.ajax({
 		type: "GET",
 		url: URL,
@@ -127,3 +165,5 @@ function get_user() {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
 		}
 	});
+	return USER;
+}
