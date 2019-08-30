@@ -1,5 +1,7 @@
 //Run On Load
 $(function() {
+	//Load Map to Start
+	view_map();
 	let user = get_user();
 	if (user) {
 		$("#view_user_btn").html("Hello, "+user);
