@@ -43,9 +43,22 @@ exports.getUser = functions.https.onRequest((req,res) => {
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.data().username + ' => ' + doc.data().id);
-            if (req.query.id == doc.data().id) {
+            if (req.query.username == doc.data().username && 
+				req.query.password == doc.data().password) {
                 res.send(doc.data());
             }
         });
     });
+});
+
+exports.getClasses = functions.https.onRequest((req,res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	db.collection("classes").get().then((querySnapshot) => {
+		querySnapshot.forEach((doc) => {
+			console.log(doc.data().id + ' => ' + doc.data().classes);
+			if (req.query.id == doc.data().id) {
+				res.send(doc.data());
+			}
+		});
+	});
 });

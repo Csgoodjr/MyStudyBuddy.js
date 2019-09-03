@@ -206,7 +206,7 @@ function get_user() {
 	console.log("Get User...");
 	var USER;
 	//must keep track of username, firstName, lastName, id
-	var URL = "http://localhost:8080/getUser?" + "id=" + id;
+	var URL = "http://localhost:8080/getUser?" + "username=" + $("#username").val() + "&password=" + $("#password").val();
 	$.ajax({
 		type: "GET",
 		url: URL,
