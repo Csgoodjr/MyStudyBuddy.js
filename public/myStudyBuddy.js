@@ -185,7 +185,7 @@ function log_in() {
     var username = $("#username").val();
     var password =$("#password").val();
 
-    var URL = "http://localhost:8080/login?username="+username+"&password="+password;
+    var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getUser?username="+username+"&password="+password;
     $.ajax({
         type: "GET",
         url: URL,
@@ -206,7 +206,7 @@ function get_user() {
 	console.log("Get User...");
 	var USER;
 	//must keep track of username, firstName, lastName, id
-	var URL = "http://localhost:8080/getUser?" + "username=" + $("#username").val() + "&password=" + $("#password").val();
+	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getUser?" + "username=" + $("#username").val() + "&password=" + $("#password").val();
 	$.ajax({
 		type: "GET",
 		url: URL,
