@@ -60,22 +60,22 @@
     <!--Create User Modal-->
     <div id="user_modal" class="user_modal">
       <button class="close" onclick="close_modal();">&times;</button>
-      <p>Welcome! Please enter your information below:</p><br>
-      <input id="firstName" placeholder="First Name..."><br>
-      <input id="lastName" placeholder="Last Name..."><br>
-      <input id="email" placeholder="Email Address..."><br>
-      <input id="id" placeholder="User ID..."><br>
-      <input id="username" placeholder="Username..."><br>
-      <input id="password" placeholder="Password..."><br>
-      <button onclick="add_user();">Submit</button>
+      <h3 id="user_get" class="user_header">Welcome! Please enter your information below:</h3><br>
+      <input id="firstName" class="modal_input" placeholder="First Name..."><br>
+      <input id="lastName" class="modal_input" placeholder="Last Name..."><br>
+      <input id="email" class="modal_input" placeholder="Email Address..."><br>
+      <input id="id" class="modal_input" placeholder="User ID..."><br>
+      <input id="username" class="modal_input" placeholder="Username..."><br>
+      <input id="password" class="modal_input" placeholder="Password..."><br>
+      <button class="modal_input" id="modal_btn" onclick="add_user();">Submit</button>
     </div>
     <!--Log-In User Modal-->
     <div id="current_user_modal" class="user_modal">
       <button class="close" onclick="close_current_modal();">&times;</button>
-      <p>Welcome Back! Please Log in</p>
-      <input id="username" placeholder="Username..."><br>
-      <input id="password" placeholder="Password..."><br>
-      <button onclick="get_user();">Log In</button>
+      <h3 id="user_set" class="user_header">Welcome Back! Please Log in</h3>
+      <input id="username" class="modal_input" placeholder="Username..."><br>
+      <input id="password" class="modal_input" placeholder="Password..."><br>
+      <button class="modal_input" id="modal_btn" onclick="get_user();">Log In</button>
     </div>
   </body>
 </html>

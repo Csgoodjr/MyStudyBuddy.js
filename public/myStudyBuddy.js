@@ -1,6 +1,7 @@
 //GLOBAL 
 
 var USER;
+var CLASSES;
 
 //Run On Load
 $(function() {
@@ -192,6 +193,10 @@ function get_user() {
 	//return USER;
 }
 
+function setClassesGlobal(c) {
+	CLASSES = c;
+}
+
 function get_classes() {
 	console.log("Get Classes...");
 	var CLASSES;
@@ -212,8 +217,7 @@ function get_classes() {
 		dataType: "jsonp",
 		*/
 		success: function(msg) {
-			CLASSES = msg;
-			console.log(CLASSES);
+			setClassesGlobal(msg);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
