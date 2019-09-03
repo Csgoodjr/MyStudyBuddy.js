@@ -152,7 +152,6 @@ function close_current_modal() {
 function add_user() {
 	console.log("New User...");
 	
-	//check if email or username taken?
 	var email = document.getElementById("email").value;
 	var firstName = document.getElementById("firstName").value;
 	var id = document.getElementById("id").value;
