@@ -1,6 +1,7 @@
 var express = require("express");
 var request = require("request");
 var firebase = require("firebase");
+
 require("firebase/firestore");
 firebase.initializeApp({
 	apiKey: 'AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88',
@@ -53,6 +54,14 @@ app.get('/login', function(req,res) {
 		});
 		
 		res.status(400).end();
+	});
+});
+
+app.get('/setGeoloc',function(req,res) {
+	db.collection("user_loc").get().then((querySnapshot) => {
+		querySnapshot.forEach((doc) => {
+			console.log(req.query.loc);
+		});
 	});
 });
 

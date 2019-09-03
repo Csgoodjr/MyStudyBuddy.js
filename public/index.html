@@ -49,8 +49,13 @@
         <button class="sidebarbtn" id="chats_btn" onclick="view_chats();">My Chats</button>
     </div>
     <div id="MainView">
-      <div id="marker" title="Marker"></div>
+      <!--MapView-->
+      
     </div>
+    <div id="marker" title="Marker"></div>
+
+    <!--MODAL-->
+    <!--Create User Modal-->
     <div id="user_modal" class="user_modal">
       <button class="close" onclick="close_modal();">&times;</button>
       <p>Welcome! Please enter your information below:</p><br>
@@ -62,6 +67,7 @@
       <input id="password" placeholder="Password..."><br>
       <button onclick="add_user();">Submit</button>
     </div>
+    <!--Log-In User Modal-->
     <div id="current_user_modal" class="user_modal">
       <button class="close" onclick="close_current_modal();">&times;</button>
       <p>Welcome Back! Please Log in</p>

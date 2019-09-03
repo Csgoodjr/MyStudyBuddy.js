@@ -8,7 +8,55 @@ $(function() {
 	} else {
 		$("#view_user_btn").html("Welcome! Click here to Log In");
 	}
+	$.ajax({
+		url: "https://us-central1-mystudybuddy.cloudfunctions.net/test",
+		type: "GET",
+		success: function(msg) {
+			console.log(msg);
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	})
+	
 });
+
+//Messaging Service
+function generateVAPIDKeys() {
+	var curve = crypto.createECDH('prime256v1');
+	curve.generateKeys();
+  
+	return {
+	  publicKey: curve.getPublicKey(),
+	  privateKey: curve.getPrivateKey(),
+	};
+  }
+  
+const messaging = firebase.messaging();
+
+messaging.usePublicVapidKey(publicKey);
+
+Notification.requestPermission().then((permission) => {
+	if (permission === 'granted') {
+		console.log("Notification permission granted");
+	} else {
+		console.log("Unable to get permission to notify");
+	}
+})
+
+//Geolocation Algorithms
+function get_current_location() {
+	var geolocation = new ol.Geolocation();
+	geolocation.setTracking(true); // here the browser may ask for confirmation
+	return geolocation;
+}
+
+function set_user_location(current_geoloc) {
+	var url = "https://localhost:8080/setGeoloc?loc="+current_geoloc;
+	$.ajax({
+		url:url
+	})
+}
 
 //MAP VIEW
 function view_map() {
@@ -28,15 +76,20 @@ function view_map() {
           zoom: 17
         })
 	});
-	//Make Marker
-	var pos = ol.proj.fromLonLat([-75.189255,39.955390])
-	var marker = new ol.Overlay({
-		position: pos,
-		positioning: 'center-center',
-		element: document.getElementById('marker'),
-		stopEvent: false
+	//Current Location
+	var geoloc = get_current_location();
+	geoloc.on("change:position",function(){
+		//Make Marker
+		var pos = ol.proj.fromLonLat(geoloc.getPosition());
+		var marker = new ol.Overlay({
+			position: pos,
+			positioning: 'center-center',
+			element: document.getElementById('marker'),
+			stopEvent: false
+		});
+		map.addOverlay(marker);
 	});
-	map.addOverlay(marker);
+	
 	  
 }
 
@@ -107,7 +160,7 @@ function add_user() {
 	var password = document.getElementById("password").value;
 	var username = document.getElementById("username").value;
 	
-	var URL = "http://localhost:8080/addUser?" + "email=" + email + "&firstName=" + firstName +
+	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/addUser?" + "email=" + email + "&firstName=" + firstName +
 		"&id=" + id + "&lastName=" + lastName + "&password=" + password + "&username=" + username;
 	
 	$.ajax({
@@ -169,3 +222,5 @@ function get_user() {
 	});
 	return USER;
 }
+
+
