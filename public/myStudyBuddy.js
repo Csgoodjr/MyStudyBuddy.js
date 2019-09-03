@@ -1,3 +1,7 @@
+//GLOBAL 
+
+var USER;
+
 //Run On Load
 $(function() {
 	//Load Map to Start
@@ -21,29 +25,6 @@ $(function() {
 	})
 	*/
 });
-
-//Messaging Service
-function generateVAPIDKeys() {
-	var curve = crypto.createECDH('prime256v1');
-	curve.generateKeys();
-  
-	return {
-	  publicKey: curve.getPublicKey(),
-	  privateKey: curve.getPrivateKey(),
-	};
-  }
-  
-const messaging = firebase.messaging();
-
-messaging.usePublicVapidKey(publicKey);
-
-Notification.requestPermission().then((permission) => {
-	if (permission === 'granted') {
-		console.log("Notification permission granted");
-	} else {
-		console.log("Unable to get permission to notify");
-	}
-})
 
 //Geolocation Algorithms
 function get_current_location() {
@@ -100,6 +81,7 @@ function view_classes() {
 	$("#MainView").empty();
 	$("#MainView").css({'background':'white','padding-left':'10px'});
 	$("#MainView").html('<h1>Classes</h1><div id="class_scroll"><div>');
+	get_classes();
 	var classlist = ['CS 260','MATH 200','MATH 221','STAT 201','COM 230','CS 275'];
 	for (i=0;i<classlist.length;i++) {
 		$("#class_scroll").append(classlist[i]+"<br>");
@@ -122,7 +104,7 @@ function view_projects() {
 	$("#MainView").html("<h1>Projects</h1>");
 }
 
-//CHATS VIEW
+//CHATS VIEW --deprecated
 function view_chats() {
 	console.log("Chats");
 	$("#MainView").empty();
@@ -179,10 +161,14 @@ function add_user() {
 	});
 }
 
+function setUserGlobal(u) {
+	USER = u;
+	console.log(USER);
+}
+
 //GET THE CURRENT USER
 function get_user() {
 	console.log("Get User...");
-	var USER;
 	
 	//must keep track of username, firstName, lastName, id
 	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getUser?" + "username=" + $("#username").val() + "&password=" + $("#password").val();
@@ -195,28 +181,40 @@ function get_user() {
 		dataType: "jsonp",
 		*/
 		success: function(msg) {
-			USER = msg;
+			setUserGlobal(msg);
+			close_current_modal();
+			$("#view_user_btn").html("Hello, "+msg.firstName);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
 		}
 	});
-	return USER;
+	//console.log(USER.id);
+	//return USER;
 }
 
 function get_classes() {
 	console.log("Get Classes...");
 	var CLASSES;
+	var id;
+	if (USER) {
+		id = USER.id;
+	} else {
+		id = null;
+	}
 	
-	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getClasses?" + "id=" + $("#id").val();
+	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getClasses?" + "id=" + id;
 	$.ajax({
 		type: "GET",
 		url: URL,
+		/*
 		contentType: "application/json; charset=utf-8",
 		data: "{}",
 		dataType: "jsonp",
+		*/
 		success: function(msg) {
 			CLASSES = msg;
+			console.log(CLASSES);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");

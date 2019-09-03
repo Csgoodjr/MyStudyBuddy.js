@@ -19,11 +19,13 @@ var db = firebase.firestore();
 
 exports.test = functions.https.onRequest((req,res) => {
     res.setHeader('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Origin','*');
     res.send("hello test");
 });
 
 exports.addUser = functions.https.onRequest((req,res) => {
     res.setHeader('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Origin','*');
     db.collection("users").add({
         email: req.query.email,
         firstName: req.query.firstName,
@@ -40,6 +42,7 @@ exports.addUser = functions.https.onRequest((req,res) => {
 
 exports.getUser = functions.https.onRequest((req,res) => {
     res.setHeader('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Origin','*');
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.data().username + ' => ' + doc.data().id);
@@ -52,7 +55,8 @@ exports.getUser = functions.https.onRequest((req,res) => {
 });
 
 exports.getClasses = functions.https.onRequest((req,res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Origin','*');
 	db.collection("classes").get().then((querySnapshot) => {
 		querySnapshot.forEach((doc) => {
 			console.log(doc.data().id + ' => ' + doc.data().classes);
