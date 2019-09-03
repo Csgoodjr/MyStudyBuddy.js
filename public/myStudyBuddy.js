@@ -189,9 +189,11 @@ function get_user() {
 	$.ajax({
 		type: "GET",
 		url: URL,
+		/*
 		contentType: "application/json; charset=utf-8",
 		data: "{}",
 		dataType: "jsonp",
+		*/
 		success: function(msg) {
 			USER = msg;
 		},
