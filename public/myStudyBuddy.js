@@ -2,6 +2,7 @@
 $(function() {
 	//Load Map to Start
 	view_map();
+	/*
 	let user = get_user();
 	if (user) {
 		$("#view_user_btn").html("Hello, "+user);
@@ -18,7 +19,7 @@ $(function() {
 			console.log(err);
 		}
 	})
-	
+	*/
 });
 
 //Messaging Service
@@ -187,9 +188,11 @@ function get_user() {
 	$.ajax({
 		type: "GET",
 		url: URL,
+		/*
 		contentType: "application/json; charset=utf-8",
 		data: "{}",
 		dataType: "jsonp",
+		*/
 		success: function(msg) {
 			USER = msg;
 		},
