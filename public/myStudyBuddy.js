@@ -205,6 +205,7 @@ function log_in() {
 function get_user() {
 	console.log("Get User...");
 	var USER;
+	
 	//must keep track of username, firstName, lastName, id
 	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getUser?" + "username=" + $("#username").val() + "&password=" + $("#password").val();
 	$.ajax({
@@ -214,7 +215,7 @@ function get_user() {
 		data: "{}",
 		dataType: "jsonp",
 		success: function(msg) {
-			//$("#content").html(msg);
+			USER = msg;
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
@@ -223,4 +224,24 @@ function get_user() {
 	return USER;
 }
 
+function get_classes() {
+	console.log("Get Classes...");
+	var CLASSES;
+	
+	var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getClasses?" + "id=" + $("#id").val();
+	$.ajax({
+		type: "GET",
+		url: URL,
+		contentType: "application/json; charset=utf-8",
+		data: "{}",
+		dataType: "jsonp",
+		success: function(msg) {
+			CLASSES = msg;
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			//$("#content").html("<p>Error fetching " + URL + "</p>");
+		}
+	});
+	return CLASSES;
+}
 
