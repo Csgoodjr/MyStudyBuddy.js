@@ -178,29 +178,6 @@ function add_user() {
 	});
 }
 
-//LOG USER IN
-function log_in() {
-    console.log("Log In...");
-
-    var username = $("#username").val();
-    var password =$("#password").val();
-
-    var URL = "https://us-central1-mystudybuddy.cloudfunctions.net/getUser?username="+username+"&password="+password;
-    $.ajax({
-        type: "GET",
-        url: URL,
-        contentType: "application/json; charset=utf-8",
-        data: "{}",
-        dataType: "jsonp",
-        success: function(msg) {
-            console.log("Logged In!");
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log("Error Logging In");
-        }
-    });
-}
-
 //GET THE CURRENT USER
 function get_user() {
 	console.log("Get User...");
