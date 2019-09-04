@@ -18,14 +18,16 @@ var db = firebase.firestore();
 // });
 
 exports.test = functions.https.onRequest((req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Origin','*');
+    //res.setHeader('Access-Control-Allow-Origin','*');
+    //res.header('Access-Control-Allow-Origin','*');
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
     res.send("hello test");
 });
 
 exports.addUser = functions.https.onRequest((req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Origin','*');
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
     db.collection("users").add({
         email: req.query.email,
         firstName: req.query.firstName,
@@ -36,13 +38,36 @@ exports.addUser = functions.https.onRequest((req,res) => {
     }).then(function(docRef) {
         console.log("Document written with ID: ",docRef.id);
     }).catch(function(err) {
-        console.log("Error adding document: ", error);
+        console.log("Error adding document: ", err);
+    });
+});
+
+exports.addUserLoc = functions.https.onRequest((req,res) => {
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
+    db.collection("user_loc").add({
+        id: req.query.id,
+        loc: req.query.loc
+    }).then(function(docRef) {
+        console.log("Document written with ID: ",docRef.id);
+    }).catch(function(err) {
+        console.log("Error adding document: ", err);
+    });
+});
+
+exports.getUserLocs = functions.https.onRequest((req,res) => {
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
+    db.collection("user_loc").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            res.send(doc.data());
+        });
     });
 });
 
 exports.getUser = functions.https.onRequest((req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Origin','*');
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.data().username + ' => ' + doc.data().id);
@@ -55,8 +80,8 @@ exports.getUser = functions.https.onRequest((req,res) => {
 });
 
 exports.getClasses = functions.https.onRequest((req,res) => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Origin','*');
+    res.set('Access-Control-Allow-Origin','*');
+    res.set('Allow-Origin','*');
 	db.collection("classes").get().then((querySnapshot) => {
 		querySnapshot.forEach((doc) => {
 			console.log(doc.data().id + ' => ' + doc.data().classes);

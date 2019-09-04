@@ -1,138 +1,239 @@
-//GLOBAL 
-
+//GLOBAL VARIABLES
 var USER;
 var CLASSES;
 
-//Run On Load
-$(function() {
-	//Load Map to Start
-	view_map();
-	/*
-	let user = get_user();
-	if (user) {
-		$("#view_user_btn").html("Hello, "+user);
-	} else {
-		$("#view_user_btn").html("Welcome! Click here to Log In");
-	}
+//Init Firebase
+var firebaseConfig = {
+	apiKey: "AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88",
+	authDomain: "mystudybuddy-6f500.firebaseapp.com",
+	databaseURL: "https://mystudybuddy-6f500.firebaseio.com",
+	projectId: "mystudybuddy",
+	storageBucket: "mystudybuddy.appspot.com",
+	messagingSenderId: "748744576391",
+	appId: "1:748744576391:web:22efccf84e6637b4"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+//-------------------------GEOLOATION-----------------------------//
+// Set User Location to the Database
+function set_user_location(c) {
+	var url = "https://us-central1-mystudybuddy.cloudfunctions.net/addUserLoc?loc="+c+"&id="+USER.id;
 	$.ajax({
-		url: "https://us-central1-mystudybuddy.cloudfunctions.net/test",
+		url: url,
+		type: "GET"
+	});
+	console.log("Added User: "+USER.id+" loc: "+c);
+}
+
+//Get List of User Positions from Database
+function getUserPositions() {
+	console.log("Getting User Positions...")
+	var url = "https://us-central1-mystudybuddy.cloudfunctions.net/getUserLocs";
+	$.ajax({
+		url: url,
 		type: "GET",
 		success: function(msg) {
 			console.log(msg);
-		},
-		error: function(err) {
-			console.log(err);
 		}
-	})
-	*/
-});
-
-//Geolocation Algorithms
-function get_current_location() {
-	var geolocation = new ol.Geolocation();
-	geolocation.setTracking(true); // here the browser may ask for confirmation
-	return geolocation;
+	});
 }
 
-function set_user_location(current_geoloc) {
-	var url = "https://localhost:8080/setGeoloc?loc="+current_geoloc;
-	$.ajax({
-		url:url
-	})
-}
-
-//MAP VIEW
+//-----------------------MAP VIEW------------------------------//
 function view_map() {
 	console.log("Map");
 	$("#MainView").empty();
 	$("#MainView").css({'background':'white','padding-left':'0px'});
-	//Set Up Map
-	var map = new ol.Map({
-        target: 'MainView',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([-75.189255,39.955390]),
-          zoom: 17
-        })
-	});
+	//Create Map
+	var map = new google.maps.Map(document.getElementById("MainView"),{
+		center:{lat:39.9566,lng:-75.1899},
+		zoom:16.5,
+		mapTypeId:google.maps.MapTypeId.ROADMAP,
+		streetViewControl:true,styles:[{
+			featureType: "administrative",
+			stylers: [
+			{visibility: "off"}]},{
+			featureType: "poi",
+			stylers: [
+			{visibility: "off"}]},{
+			featureType: "transit",
+			stylers: [
+			{visibility: "off"}]}
+		]}
+	);
 	//Current Location
-	var geoloc = get_current_location();
-	geoloc.on("change:position",function(){
-		//Make Marker
-		var pos = ol.proj.fromLonLat(geoloc.getPosition());
-		var marker = new ol.Overlay({
-			position: pos,
-			positioning: 'center-center',
-			element: document.getElementById('marker'),
-			stopEvent: false
+	if (navigator.geolocation) {
+		//Gets the Geolocation of the user
+		navigator.geolocation.getCurrentPosition(function(e) {
+		//Sets variable "pos" to the current Geolocation
+		var pos = {lat: e.coords.latitude,lng: e.coords.longitude};
+		//Convert the "pos" to the LatLng positioning type
+		var curLoc = new google.maps.LatLng(pos)
+		set_user_location(curLoc);
+		//Sets the "pos" variable to a map marker "curLoc"
+		new google.maps.Marker({map:map,position:curLoc,title:"Location",icon:{path:google.maps.SymbolPath.CIRCLE,scale:5,strokeColor:"#FF0000",strokeWeight:5}});
 		});
-		map.addOverlay(marker);
+	}
+	var heatMapData = [
+		{location: new google.maps.LatLng(39.955,-75.188), weight: 2},
+		new google.maps.LatLng(39.955,-75.187),
+		new google.maps.LatLng(39.956,-75.189),
+		{location: new google.maps.LatLng(39.954,-75.186), weight: 5},
+		new google.maps.LatLng(39.955,-75,190),
+		{location: new google.maps.LatLng(39.9565,-75.195), weight: 7}
+	]
+	var heatmap = new google.maps.visualization.HeatmapLayer({
+		data: heatMapData
 	});
-	
-	  
+	heatmap.setMap(map);
+	getUserPositions();
 }
 
-//CLASS VIEW
-function view_classes() {
-	console.log("Classes");
-	$("#MainView").empty();
-	$("#MainView").css({'background':'white','padding-left':'10px'});
-	$("#MainView").html('<h1>Classes</h1><div id="class_scroll"><div>');
-	get_classes();
-	var classlist = ['CS 260','MATH 200','MATH 221','STAT 201','COM 230','CS 275'];
-	for (i=0;i<classlist.length;i++) {
-		$("#class_scroll").append(classlist[i]+"<br>");
+function openSyllabus(val) {
+	console.log(val);
+	if ($("#class_content").length == 0) {
+		$("#MainView").append('<div id="class_content"></div>');
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Syll.htm"/>');
+	} else {
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Syll.htm"/>');
 	}
 }
 
-//HOMEWORK VIEW
+function openCourseDocs(val) {
+	console.log(val);
+	if ($("#class_content").length == 0) {
+		$("#MainView").append('<div id="class_content"></div>');
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Web.htm"/>');
+		$('#class_content').on('click', 'a', function(e) {
+			e.preventDefault();
+			console.log($(this).attr('href'));
+		});
+	} else {
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Web.htm"/>');
+	}
+}
+
+function openAssign(val) {
+	console.log(val);
+	if ($("#class_content").length == 0) {
+		$("#MainView").append('<div id="class_content"></div>');
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Syll.htm"/>');
+	} else {
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Syll.htm"/>');
+	}
+}
+
+function openWebsite(val) {
+	console.log(val);
+	if ($("#class_content").length == 0) {
+		$("#MainView").append('<div id="class_content"></div>');
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Web.htm"/>');
+	} else {
+		$("#class_content").html('<object style="height: 60vh;width:100%;" data="'+val+'_Web.htm"/>');
+	}
+}
+
+//----------------------CLASS VIEW---------------------------//
+function view_classes() {
+	console.log("Classes");
+	$("#MainView").empty();
+	$("#MainView").css({'background':'var(--powder)','padding-left':'10px'});
+	$("#MainView").append('<h2>Select a Class</h2>');
+	$("#MainView").append('<select id="class_sel"></select>');
+	//get_classes(); //Get Classes from DB
+	var class_arr = [
+		{val : 1, text: 'CS 260'},
+		{val : 2, text: 'MATH 200'},
+		{val : 3, text: 'MATH 221'},
+		{val : 4, text: 'STAT 201'},
+		{val : 5, text: 'COM 230'},
+		{val : 6, text: 'CS 275'}
+	];
+	var sel = $('#class_sel');
+	$(class_arr).each(function() {
+		sel.append('<option value="'+this.val+'">'+this.text+'</option>');
+	});
+	var val;
+	val = $("#class_sel").val();
+	$("#MainView").append("<br><br>");
+	var button_arr = [
+		{text : 'Syllabus', link : 'openSyllabus("'+val+'")'},
+		{text : 'Course Docs', link : 'openCourseDocs("'+val+'")'},
+		{text : 'Assignments', link : 'openAssign("'+val+'")'},
+		{text : 'Website', link : 'openWebsite("'+val+'")'}
+	];
+	$(button_arr).each(function() {
+		$("#MainView").append($("<button>").attr({'onclick':this.link,'class':'class_btn'}).text(this.text));
+	});
+}
+
+//--------------------HOMEWORK VIEW--------------------------//
 function view_homework() {
 	console.log("Homework");
 	$("#MainView").empty();
-	$("#MainView").css({'background':'white','padding-left':'10px'});
+	$("#MainView").css({'background':'var(--powder)','padding-left':'10px'});
 	$("#MainView").html("<h1>Homework</h1>");
+	$("#MainView").append('<h2>Select a Class</h2>');
+	$("#MainView").append('<select id="class_sel"></select>');
+	//get_classes(); //Get Classes from DB
+	var class_arr = [
+		{val : 1, text: 'CS 260'},
+		{val : 2, text: 'MATH 200'},
+		{val : 3, text: 'MATH 221'},
+		{val : 4, text: 'STAT 201'},
+		{val : 5, text: 'COM 230'},
+		{val : 6, text: 'CS 275'}
+	];
+	var sel = $('#class_sel');
+	$(class_arr).each(function() {
+		sel.append('<option value="'+this.val+'">'+this.text+'</option>');
+	});
+	$("#MainView").append('<div id="homework_content"></div>');
+	$("#MainView").append('<div id="view_content"><div>');
+	var hc = $("#homework_content");
+	var vc  =$("#view_content");
+	hc.html("<h1>Looks like this class doesn't have any homework!</h1>");
+	sel.on('change',function() {
+		if (sel.val() == 1) {
+			hc.html("<h1>Looks like this class doesn't have any homework!</h1>");
+		} else if (sel.val() == 2) {
+			hc.html("<h1>Looks like this class doesn't have any homework!</h1>");
+		} else if (sel.val() == 3) {
+			hc.empty();
+			hc.append('<h4><a href="W1HW.pdf">HW1</a></h4>');
+			hc.append('<h4><a href="W2HW.pdf">HW2</a></h4>');
+			hc.append('<h4><a href="W3HW.pdf">HW3</a></h4>');
+			hc.append('<h4><a href="">HW4</a></h4>');
+			hc.append('<h4><a href="">HW5</a></h4>');
+			hc.append('<h4><a href="">HW6</a></h4>');
+			hc.append('<h4><a href="">HW7</a></h4>');
+			hc.append('<h4><a href="">HW8</a></h4>');
+			hc.append('<h4><a href="">HW9</a></h4>');
+			hc.append('<h4><a href="">HW10</a></h4>');
+		} else if (self.val() == 4) {
+
+		}
+	})
+	
 }
 
-//PROJECTS VIEW
-function view_projects() {
-	console.log("Projects");
-	$("#MainView").empty();
-	$("#MainView").css({'background':'white','padding-left':'10px'});
-	$("#MainView").html("<h1>Projects</h1>");
-}
-
-//CHATS VIEW --deprecated
-function view_chats() {
-	console.log("Chats");
-	$("#MainView").empty();
-	$("#MainView").css({'background':'white','padding-left':'10px'});
-    $("#MainView").html("<h1>Chats</h1>");
-}
-
-//Modals
+//----------------------MODALS--------------------------------//
 function open_modal() {
     $("#user_modal").css({"display":"block"});
     console.log("Add User Clicked");
 }
-
 function close_modal() {
     $("#user_modal").css({"display":"none"});
 }
-
 function view_user() {
     $("#current_user_modal").css({"display":"block"});
     console.log("Log In User Clicked");
 }
-
 function close_current_modal() {
     $("#current_user_modal").css({"display":"none"});
 }
 
-//ADD USER
+//----------------------ADD USER-----------------------------//
 function add_user() {
 	console.log("New User...");
 	
@@ -153,7 +254,7 @@ function add_user() {
 		data: "{}",
 		dataType: "html",
 		success: function(msg) {
-			//$("#content").html(msg);
+			close_modal();
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			//$("#content").html("<p>Error fetching " + URL + "</p>");
@@ -161,12 +262,12 @@ function add_user() {
 	});
 }
 
+//----------------------GET CURRENT USER----------------------------//
 function setUserGlobal(u) {
 	USER = u;
 	console.log(USER);
 }
 
-//GET THE CURRENT USER
 function get_user() {
 	console.log("Get User...");
 	
@@ -193,6 +294,7 @@ function get_user() {
 	//return USER;
 }
 
+//----------------------GET CLASSES------------------------//
 function setClassesGlobal(c) {
 	CLASSES = c;
 }

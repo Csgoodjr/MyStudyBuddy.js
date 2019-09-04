@@ -1,0 +1,179 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>Data Structures</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Arial Unicode MS","sans-serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Arial Unicode MS","sans-serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#9966FF;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+span.apple-converted-space
+	{mso-style-name:apple-converted-space;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#9966FF" vlink=purple>
+
+<div class=WordSection1>
+
+<h1 style='margin-right:.2in'><span style='font-size:18.0pt;font-family:"Times New Roman","serif"'>CS
+260, Data Structures, Summer 2019</span></h1>
+
+<h2 style='margin-right:.2in'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+font-weight:normal'>Instructor: </span><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>Krzysztof Nowak</span><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif";font-weight:normal'><br>
+Office: </span><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>3675MK
+1146<br>
+</span><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+font-weight:normal'>Office Hours:</span><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'> Monday, Wednesday 10:00 am - 10:50 am,
+Thursday 5:00 pm - 5:50 pm</span><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";font-weight:normal'><br>
+e-mail: </span><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>kn33@drexel.edu</span></h2>
+
+<p style='margin-right:.2in'>Section 001: <b>Monday, Wednesday 12:30 pm - 1:50
+pm, 3675MK 1054-1055</b><br>
+Section 002: <b>Monday, Wednesday 11:00 am - 12:20 pm, 3675MK 1054-1055<br>
+<br>
+</b>The course covers the basics of data structures and algorithms put in the
+broader context of solving problems using computers. We discuss fundamental
+data structures: arrays, lists, stacks, queues, mappings, trees, hash tables,
+tries, sets, graphs and standard algorithms operating on them. We cover
+theoretical concepts and methods, which are necessary in the process of the
+design and the evaluation of efficiency. Abstract data types are used
+informally in the description and implementation of algorithms. Our
+presentation follows the steps: abstract understanding of data types, design
+and implementation, analysis of correctness, flexibility and efficiency. The
+course puts a strong stress on the analytic aspects of computational
+complexity. Basic mathematics and programming courses are the prerequisites for
+it.<b><span style='font-size:14.0pt'><br>
+<br>
+Required Text</span></b> <br>
+Alfred V. Aho, John E. Hopcroft, Jeffrey D. Ullman, <i>Data Structures and
+Algorithms,</i> Addison-Wesley, Reading, Massachusetts, 1983.</p>
+
+<p style='margin-right:.2in'><b><span style='font-size:14.0pt'>Reference Texts</span></b><br>
+Alfred V. Aho, Jeffrey D. Ullman, <i>Foundations of Computer Science, C
+Edition,</i> Computer Science Press, New York, 1995, available as downloadable
+pdf files:<br>
+http://infolab.stanford.edu/~ullman/focs.html<br>
+<span style='color:black'>Thomas H. Cormen, Charles E. Leiserson, Ronald L.
+Rivest, Clifford Stein,<span class=apple-converted-space>&nbsp;</span></span><i
+style='orphans: auto;text-align:start;widows: 1;-webkit-text-stroke-width: 0px;
+word-spacing:0px'>Introduction to Algorithms</i><span style='orphans: auto;
+text-align:start;widows: 1;-webkit-text-stroke-width: 0px;float:none;
+word-spacing:0px'>, The MIT Press, Cambridge, 2009 (Third Edition)<b><br>
+</b><span style='orphans: auto;text-align:start;widows: 1;-webkit-text-stroke-width: 0px;
+float:none;word-spacing:0px'>Robert Sedgewick, <i>Algorithms in C++</i>,
+Addison-Wesley, Reading, Massachusetts, 1998 (third edition).<br>
+Herbert S. Wilf, <i>Algorithms and Complexity</i>, A K Peters, Ltd., Natick,
+Massachusetts, 2002 (second edition), downloadable first edition:<br>
+http://www.math.upenn.edu/%7Ewilf/AlgoComp.pdf<br>
+<b><span style='font-size:14.0pt'><br>
+Syllabus<br>
+</span>Week 1: </b>Design and analysis of algorithms<b><br>
+Week 2: </b>Quiz 1 on Monday, Algorithm analysis techniques<b><br>
+Week 3:</b> Quiz 2 on Monday, Basic data types<br>
+<b>Week 4:</b> Quiz 3 on Monday, Trees, Review 1 on Wednesday<br>
+<b>Week 5:</b> Test 1 on Monday<b>,</b> Basic operations on sets <br>
+<b>Week 6:</b> PA 1 due Monday midnight, Quiz 4 on Monday, Priority queues,
+Complex set structures, Binary trees, Binary search trees, Tries<b><br>
+Week 7:</b> Quiz 5 on Monday, Directed graphs<b><br>
+Week 8:</b> PA 2 due Monday midnight, Quiz 6 on Monday, Undirected graphs,
+Review 2 on Wednesday<b><br>
+Week 9:</b> Test 2 on Monday, Sorting, Review 3 made available online on
+Wednesday<br>
+<b>Week 10</b>: Quiz 7 on Monday, Algorithm design techniques, Take-home Test 3
+distributed in class on Wednesday, due with the final exam<br>
+<b>Week 11:</b> PA 3 due Monday midnight, Final Exam</p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>Course Objectives</span></b><br>
+To learn how to analyze the computational complexity of algorithms and to
+understand recurrence relations and basic asymptotic analysis. <br>
+To understand principal abstract data types and algorithms they support. In
+particular, understand lists, stacks, queues, mappings, trees, hash tables,
+tries, sets, and graphs.<br>
+To understand the principles behind basic sorting algorithms. <br>
+To learn the basics of algorithm design.<br>
+<b><span style='font-size:14.0pt'><br>
+Course Grade and Exams</span></b><br>
+We will have seven group quizzes with individual submission, three individual
+tests, an individual final exam, two individual programming assignments, and
+one group programing assignment with group submission. The final grade will be
+computed as follows: quizzes count for 20%, tests for 25%, final exam for 25%,
+programming assignments for 25%, and class attendance for 5%.</p>
+
+</span></div>
+
+</span>
+</body>
+
+</html>

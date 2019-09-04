@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>CS 260, Data Structures, Summer 2019</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0in;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+span.apple-converted-space
+	{mso-style-name:apple-converted-space;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<h3>CS 260, Data Structures, Summer 2019<span style='font-size:18.0pt'><br>
+</span><span style='font-size:14.0pt'><br>
+</span><span style='font-size:16.0pt'>Instructor</span><span style='font-size:
+14.0pt'><br>
+</span><span style='font-size:12.0pt'>Krzysztof Nowak</span></h3>
+
+<h3 style='margin-bottom:24.0pt'><span style='font-size:12.0pt;color:black;
+font-weight:normal'>Grading responsibilities: Tests, Final Exam</span><span
+style='font-size:12.0pt;font-weight:normal'><br>
+e-mail: kn33@drexel.edu<br>
+Office: 3675MK 1146<br>
+Office Hours: Monday, Wednesday 10:00 am - 10:50 am, Thursday 5:00 pm - 5:50 pm</span></h3>
+
+<h3><span style='font-size:16.0pt;color:black'>Teaching Assistant</span><span
+style='font-size:12.0pt'><br>
+<span style='color:black;background:white'>Reza Moradinezhad</span><br>
+</span><span style='font-size:12.0pt;color:black;font-weight:normal'>Grading
+responsibilities: Quizzes, Programming Assignments</span></h3>
+
+<h4 style='margin-bottom:14.0pt'><span style='font-size:12.0pt;font-weight:
+normal'>e-mail: <span style='background:white'>rm976@drexel.edu</span><br>
+Office Hours: Monday 4 pm – 6 pm, Wednesday 2 pm – 4 pm, 3675MK 1066<br>
+</span><span style='font-size:16.0pt;color:black'><br>
+Students helping with CS 260 in <a
+href="https://www.cs.drexel.edu/clc/Su19/index.html">CLC</a></span><span
+style='font-size:12.0pt;color:black;font-weight:normal'><br>
+Click on the link and select class CS 260</span><span style='font-size:16.0pt'><br>
+<br>
+Course Materials</span><br>
+<span style='font-size:12.0pt'><a href="cs_260.htm">Syllabus</a>, <a
+href="reading_schedule.htm">Reading Assignments</a>, Lecture slides by weeks: <a
+href="week_1.pdf">#1</a>, <a href="week_2.pdf">#2</a>, <a href="week_3.pdf">#3</a>,
+<a href="week_4.pdf">#4</a>, <a href="week_5.pdf">#5</a>, <a href="week_6.pdf">#6</a>,
+<a href="week_7.pdf">#7</a>, <a href="week_8.pdf">#8</a>, <a href="week_9.pdf">#9</a>,
+<a href="week_10.pdf">#10</a><br>
+</span><span style='font-size:16.0pt'><br>
+Programming Assignments: <a
+href="https://www.cs.drexel.edu/~knowak/cs260_summer_2017/pa_1.htm">#1</a> </span><span
+style='font-size:12.0pt'>(due midnight 07/29/19, postponed till midnight
+08/02/19), </span><span style='font-size:16.0pt'><a
+href="https://www.cs.drexel.edu/~knowak/cs260_summer_2017/pa_2.htm">#2</a> </span><span
+style='font-size:12.0pt'>(due midnight 08/12/19, postponed till midnight
+08/16/19), </span><span style='font-size:16.0pt'><a
+href="https://www.cs.drexel.edu/~knowak/cs260_summer_2017/pa_3.htm">#3</a> </span><span
+style='font-size:12.0pt'>(due midnight 09/02/19)</span><span style='font-size:
+12.0pt;font-weight:normal'><br>
+Write your code either in C++ or in Python.</span><span style='font-size:12.0pt;
+color:black'><br>
+</span><span style='font-size:12.0pt'>Submission guidelines by Reza are
+available via Bb Learn. In case of questions, clarifications please contact
+Reza via e-mail.<br>
+<br>
+</span><span style='font-size:16.0pt'>Course Resources<br>
+</span><span style='font-size:12.0pt'><a
+href="https://www.cs.drexel.edu/~knowak/cs260_winter_2019/Cpp_resources.htm">C++</a>,
+<a
+href="https://www.cs.drexel.edu/~knowak/cs260_winter_2019/Python_resources.htm">Python</a></span><span
+style='font-size:12.0pt;font-weight:normal'><br>
+</span><span style='font-size:16.0pt'><br>
+Announcements<br>
+</span><span style='font-size:12.0pt;font-weight:normal'>All tests, quizzes and
+the final exam will be open book. You will be allowed to access the textbook,
+but not notes, no other materials and no calculators. Neither laptops, nor
+cellphones will be allowed, only paper copies of the textbook.</span></h4>
+
+<p class=MsoNormal style='margin-bottom:12.0pt;page-break-after:avoid'><b><span
+style='font-size:14.0pt'>Student e-mail addresses: <a href="students_001.pdf">Section
+001</a>, <a href="students_002.pdf">Section 002</a></span></b><br>
+<b><span style='font-size:14.0pt'>Student PA 3 groups: <a
+href="pa3_groups_001.jpg">Section 001</a>, <a href="pa3_groups_002.jpg">Section
+002</a><br>
+<br>
+Programming Assignment 3: The timeline of group work</span><br>
+1. Wednesday-Friday week 9: </b>Group leaders fill in and e-mail the <b><a
+href="https://www.cs.drexel.edu/~knowak/cs260_summer_2017/pa_3_initial_leaders_report.doc">initial
+leaders report</a></b> (only groups consisting of at least two students) to the
+instructor.<br>
+<b>2. Monday-Friday week 10: </b>Group leaders collect the outcomes of the work
+of group members, combine all ingredients together and redistribute to group
+members for reevaluation, and in order to get their approval for submission.<b><br>
+3. Monday week 11: </b>Group leaders submit compressed files containing
+completed programming assignments following the submission guidelines. Students
+fill in the <b><a
+href="https://www.cs.drexel.edu/~knowak/cs260_summer_2017/pa_3_completion_assessment_reports.htm">completion
+assessment report</a></b>. The completed report needs to be submitted together
+with the final exam (it counts for 5% of the final exam grade).</p>
+
+<h4>Test 1, Quizzes 1-3<br>
+<span style='font-size:12.0pt;font-weight:normal'>Symbol [W] refers to</span><span
+style='font-size:12.0pt'> </span><span style='font-size:12.0pt;font-weight:
+normal'>the book</span><span style='font-size:12.0pt'> </span><i><span
+style='font-size:12.0pt;font-weight:normal'>Algorithms and Complexity</span></i><span
+style='font-size:12.0pt;font-weight:normal'> by Herbert Wilf:<br>
+http://www.math.upenn.edu/%7Ewilf/AlgoComp.pdf<br>
+<br>
+</span><span style='font-size:12.0pt'>Quiz 1, 07/01/19, covers 1.4-1.5, 9.1-9.2</span></h4>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>Quiz 1 practice problems:<b> </b>1.3,
+1.7 (reference: 4.1, 4.2 of [W]), 1.10, 1.11, 1.12, 1.13 (reference: 1.1 of
+[W]), 1.14, 1.16 (reference: 1.1 of [W]), 1.17, 1.18<b><br>
+<br>
+Quiz 2, 07/08/19, covers 9.3-9.4</b><br>
+Quiz 2 practice problems: 9.2, 9.4, 9.7, 9.8, 9.10 (reference: 1.3, 1.5 of [W],
+in part b consider only k = 1,2,3), 9.13<b><br>
+<br>
+Quiz 3, 07/15/19, covers 2.1-2.6</b><br>
+Quiz 3 practice problems: 2.1, 2.2, 2.3, 2.4, 2.9, 2.11, 2.14, 2.19, 2.24</p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><b>Test 1, 07/22/19, covers
+1.4-1.5, 9.1-9.4, 2.1-2.6, 3.1-3.3, <a href="review_1.pdf">Review Problems</a>,
+<a href="review_1_solutions.pdf">Solutions of Review Problems</a></b><br>
+Practice problems related to trees: 3.1, 3.3, 3.4, 3.7, 3.10, 3.11, 3.12, 3.14,
+3.16</p>
+
+<h4>Test 2, Quizzes 4-6</h4>
+
+<h4><span style='font-size:12.0pt'>Quiz 4, 07/29/19, covers 4.1-4.8</span></h4>
+
+<h4><span style='font-size:12.0pt;font-weight:normal'>Quiz 4 practice problems:
+4.1, 4.2, 4.4 - 4.8, 4.10, 4.11<br>
+</span><span style='font-size:12.0pt'><br>
+Quiz 5, 08/05/19, covers 4.10-4.12, 3.4, 5.1-5.3 </span></h4>
+
+<p class=MsoNormal>Quiz 5 practice problems: 4.12, 4.13, 3.17, 3.18, 3.19 (only
+pre-order, hint: substitute the stack of fig. 3.9. by parent pointers), 3.20,
+5.1-5.5</p>
+
+<h4><span style='font-size:12.0pt'><br>
+Quiz 6, 08/12/19, covers 6.1-6.5</span><span style='font-size:12.0pt;
+font-weight:normal'><br>
+Quiz 6 practice problems:</span> <span style='font-size:12.0pt;font-weight:
+normal'>6.1, 6.3, 6.4, 6.8</span></h4>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>&nbsp;<b><br>
+Test 2, 08/19/19, covers 4.1-4.8, 3.4, 4.10-4.12, 5.1-5.3, 6.1-6.5, 7.1-7.3, <a
+href="review_2.pdf">Review Problems</a>, <a href="review_2_solutions.pdf">Solutions
+of Review Problems</a><br>
+</b>Practice problems related to undirected graphs: 7.1-7.3, 7.8, 7.10</p>
+
+<h4><span style='color:black'>Test 3, Quiz 7, Final Exam</span></h4>
+
+<h4><span style='font-size:12.0pt;color:black'>Quiz 7, 08/26/19, covers 8.1-8.7<br>
+</span><span style='font-size:12.0pt;color:black;font-weight:normal'>Quiz 7
+practice problems:</span><span class=apple-converted-space><span
+style='font-size:12.0pt;color:black'>&nbsp;</span></span><span
+style='font-size:12.0pt;color:black;font-weight:normal'>8.2, 8.6 a, 8.7-8.9,
+8.15-8.17</span></h4>
+
+<h4 style='margin-bottom:14.0pt'><span style='color:black;font-weight:normal'><br>
+</span><span style='font-size:12.0pt;color:black'><a href="take_home_test_3.pdf">Take-home
+Test 3</a>, due with the final exam, covers 8.1-8.7, 10.1-10.2,<span
+class=apple-converted-space>&nbsp;</span><a href="review_3.pdf">Review Problems</a>,<span
+class=apple-converted-space>&nbsp;</span><a href="review_3_solutions.pdf">Solutions
+of Review Problems</a></span><span style='color:black;font-weight:normal'><br>
+</span><span style='font-size:12.0pt;color:black;font-weight:normal'>Practice problems
+related to algorithm design techniques: 10.1-10.3, 10.5-10.6</span><span
+style='color:black;font-weight:normal'><br>
+</span><span style='color:black'><br>
+</span><span style='font-size:12.0pt;color:black'>Final Exam, 09/03/19, 8:00 am
+– 10:00 am, PISB 120, Final Exam Alternative Options: <a href="option_1.jpg">I</a>,
+09/03/19, 3:30 pm – 5:30 pm, 3675MK 1054-1055, &nbsp;<a href="option_2.jpg">II</a>,
+09/05/19, 6:30 pm – 8:30 pm, 3675MK 1054-1055 (make sure to sign up, in case
+you choose an alternative option), covers 1.4-1.5, 9.1-9.4, 2.1-2.6, 3.1-3.4,
+4.1-4.8, 4.10-4.12, 5.1-5.3, 6.1-6.5, 7.1-7.3, 8.1-8.7, 10.1-10.2<br>
+</span><span style='font-size:12.0pt;color:black;font-weight:normal'>Final Exam
+review materials: tests 1,2,3 review problems for tests 1,2,3, quizzes 1-7, all
+practice problems</span></h4>
+
+</div>
+
+</body>
+
+</html>

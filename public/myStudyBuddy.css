@@ -12,11 +12,25 @@ body {
     font-family: var(--standard-font-family);
 }
 
+button {
+    outline: none;
+}
+
+#main_title {
+    font-family: var(--standard-font-family);
+    color: var(--tang);
+    position: fixed;
+    left: 100px;
+    top: -20;
+    font-size: 40px;
+    font-style: bold;
+}
+
 .sidebarbtn {
     width: 100%;
-    height: 30px;
+    height: 70px;
     border: none;
-    font-size: 20px;
+    font-size: 30px;
     background: var(--tang);
 }
 
@@ -42,19 +56,20 @@ body {
 }
 
 #MainSideBar {
-    top: 100px;
-    width: 10%;
-    height: 100%;
+    top: 10vh;
+    width: 180px;
+    height: 90vh;
     float: left;
     background: var(--tang);
     position: fixed;
 }
+
 #MainView {
-    top: 100px;
-    width: 90%;
-    height: 100%;
+    top: 10vh;
+    height: 90vh;
     background: white;
-    margin-left: 10%;
+    margin-left: 180px;
+    padding: none;
     position: fixed;
 }
 
@@ -70,6 +85,8 @@ body {
     height: 100px;
     width: 75px;
     background: none;
+    color: white;
+    font-size: 15px;
 }
 
 .mainnavbtn:hover {
@@ -148,4 +165,39 @@ body {
     background-color: #0FF;
     opacity: 1;
     z-index: 2;
+  }
+
+  #class_sel {
+      width: 200px;
+      height: 50px;
+      border: none;
+      outline: none;
+      font-size: 20px;
+      line-height: 10px;
+  }
+  #class_sel:hover {
+      cursor: pointer;
+  }
+
+  .class_btn {
+      width: 24.5%;
+      height: 15%;
+      padding: 10px;
+      border: 1px solid var(--powder);
+      font-family: var(--standard-font-family);
+      font-size: 20px;
+      border-radius: 5px;
+  }
+  .class_btn:hover {
+      color: white;
+      background: var(--tang);
+      cursor: pointer;
+  }
+
+  #homework_content {
+      display: block;
+      height: 40vh;
+      width: 100vw;
+      overflow: auto;
+      float: left;
   }
