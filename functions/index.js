@@ -3,11 +3,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 const firebase = require('firebase');
 require('firebase/firestore');
-firebase.initializeApp({
-    apiKey: 'AIzaSyA8anfeOBTQsCqDJyfQatna9Kyzf0xKs88',
-	authDomain: 'mystudybuddy-6f500.firebaseapp.com',
-	projectId: 'mystudybuddy'
-});
+firebase.initializeApp({ **Insert API KEY**});
 var db = firebase.firestore();
 
 // // Create and Deploy Your First Cloud Functions
